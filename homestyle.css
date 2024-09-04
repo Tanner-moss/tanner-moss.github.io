@@ -38,7 +38,7 @@ button {
     left: 37%;
     width: 150px; /* Set the width of the button */
     height: 50px; /* Set the height of the button */
-    background-image: url('IMG_1136-3.png'); /* Path to your image */
+    background-image: url('IMG_1136-3.PNG'); /* Path to your image */
     background-size: 300%; /* Set background size larger than the button width */
     background-position: 0 0; /* Initial position (left side of the image) */
     border: none; /* Optional: Remove the default button border */
