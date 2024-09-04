@@ -1,0 +1,130 @@
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    background-color: #a2b1b8;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Ensure the video is behind other content */
+}
+.gradient {
+    background-image: url('gradient.png');
+    background-size: cover; /* Adjust size to cover the entire div */
+    background-position: center; /* Center the image within the div */
+    width: 100%; /* Adjust width as needed */
+    height: 100%; /* Adjust height as needed */
+    position: relative; /* Positioning can be adjusted as needed */
+    z-index: 0;
+}
+
+button {
+    position: absolute;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+
+#game {
+    top: 80%;
+    left: 37%;
+    width: 150px; /* Set the width of the button */
+    height: 50px; /* Set the height of the button */
+    background-image: url('IMG_1136-3.png'); /* Path to your image */
+    background-size: 300%; /* Set background size larger than the button width */
+    background-position: 0 0; /* Initial position (left side of the image) */
+    border: none; /* Optional: Remove the default button border */
+    color: rgb(253, 253, 253); /* Optional: Set text color */
+    font-size: 15px; /* Optional: Set font size */
+    font-weight: 600;
+    cursor: pointer; /* Optional: Change cursor on hover */
+    transition: background-position 5s ease-in-out;
+    border-radius: 15px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    border: 2px solid #4e4e4e;
+    text-shadow: 
+    1px 1px 0 #000,   /* Right and bottom shadow */
+    -1px -1px 0 #000, /* Left and top shadow */
+    1px -1px 0 #000,  /* Top-right shadow */
+    -1px 1px 0 #000;  /* Bottom-left shadow */
+}
+#game:hover {
+    background-position: 100% 0; /* Move the background image to the right on hover */
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);
+    border-color: #181818;
+    width: 160px; /* Set the width of the button */
+    height: 55px;
+        
+}
+
+#art {
+    top: 80%;
+    left: 47%;
+}
+
+#certs {
+    top: 80%;
+    left: 57%;
+}
+
+
+.smiley {
+    background-image: url('cat_body.png');
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+}
+
+
+.eye {
+    position: absolute;
+    width:13px;
+    height: 13px;
+    background-color: rgb(207, 207, 207);
+    border-radius: 150%;
+    top: 90px;
+}
+
+.eye.left {
+    left: 73px;
+}
+
+.eye.right {
+    right: 67px;
+}
+
+.paw1 {
+    background-image: url('paw2.png');
+    position: absolute;
+    bottom: -5%;
+    left: 53%;
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.paw2 {
+    background-image: url('paw1.png');
+    position: absolute;
+    bottom: -5%;
+    left: 42%;
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
