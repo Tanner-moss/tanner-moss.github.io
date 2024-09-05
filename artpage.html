@@ -12,6 +12,7 @@
             justify-content: center; /* Center the gallery horizontally */
             align-items: center; /* Center the gallery vertically */
             background-color: #1d1d1d; /* Optional: Set a background color for the page */
+            overflow: hidden;
         }
         .gallery {
             display: flex;
@@ -81,6 +82,7 @@
     <img src="creepy.png" alt="Image 3" onclick="openModal('creepy.png')">
     <img src="deer.png" alt="Image 4" onclick="openModal('deer.png')">
     <img src="praying_mantis.png" alt="Image 5" onclick="openModal('praying_mantis.png')">
+    <img src="destroyedhome.png" alt="Image 5" onclick="openModal('destroyedhome.png')">
 </div>
 
 <div id="modal" class="modal">
@@ -96,10 +98,12 @@
     function openModal(src) {
         document.getElementById('modal').classList.add('active');
         document.getElementById('modal-img').src = src;
+        document.getElementById('home').style.display = 'none';
     }
 
     function closeModal() {
         document.getElementById('modal').classList.remove('active');
+        document.getElementById('home').style.display = 'block';
     }
 </script>
 

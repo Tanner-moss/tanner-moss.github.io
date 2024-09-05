@@ -1,3 +1,4 @@
+/* Default Styles (Desktop) */
 body {
     height: 100vh;
     margin: 0;
@@ -6,7 +7,9 @@ body {
     overflow: hidden;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
+
 .video-background {
     position: absolute;
     top: 0;
@@ -15,14 +18,29 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: -1; /* Ensure the video is behind other content */
+    display: block; /* Show video by default */
 }
+
+.mobile-background {
+    display: none; /* Hide mobile background by default */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('space.png'); /* Mobile background image */
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
 .gradient {
     background-image: url('gradient.png');
-    background-size: cover; /* Adjust size to cover the entire div */
-    background-position: center; /* Center the image within the div */
-    width: 100%; /* Adjust width as needed */
-    height: 100%; /* Adjust height as needed */
-    position: relative; /* Positioning can be adjusted as needed */
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
     z-index: 0;
 }
 
@@ -30,101 +48,192 @@ button {
     position: absolute;
     padding: 10px 20px;
     font-size: 16px;
+    transition: all 0.3s ease; /* Smooth transition for responsive design */
 }
 
-
+/* Game Button */
 #game {
-    top: 80%;
-    left: 37%;
-    width: 150px; /* Set the width of the button */
-    height: 50px; /* Set the height of the button */
-    background-image: url('IMG_1136-3.PNG'); /* Path to your image */
-    background-size: 300%; /* Set background size larger than the button width */
-    background-position: 0 0; /* Initial position (left side of the image) */
-    border: none; /* Optional: Remove the default button border */
-    color: rgb(253, 253, 253); /* Optional: Set text color */
-    font-size: 15px; /* Optional: Set font size */
+    top: 70%;
+    left: 18%;
+    width: 300px;
+    height: 100px;
+    background-image: url('allmaps.jpg');
+    background-size: 425%;
+    background-position: 0 0;
+    border: none;
+    color: rgb(253, 253, 253);
+    font-size: 25px;
     font-weight: 600;
-    cursor: pointer; /* Optional: Change cursor on hover */
-    transition: background-position 5s ease-in-out;
+    cursor: pointer;
+    transition: background-position 8s ease-in-out, width 0.3s ease, height 0.3s ease;
     border-radius: 15px;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
-    border-radius: 15px;
     border: 2px solid #4e4e4e;
     text-shadow: 
-    1px 1px 0 #000,   /* Right and bottom shadow */
-    -1px -1px 0 #000, /* Left and top shadow */
-    1px -1px 0 #000,  /* Top-right shadow */
-    -1px 1px 0 #000;  /* Bottom-left shadow */
+        1px 1px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000;
 }
+
 #game:hover {
-    background-position: 100% 0; /* Move the background image to the right on hover */
+    background-position: 100% 0;
     box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);
     border-color: #181818;
-    width: 160px; /* Set the width of the button */
-    height: 55px;
-        
+    width: 330px;
+    height: 115px;
 }
 
 #art {
-    top: 80%;
-    left: 47%;
+    top: 60%;
+    left: 43%;
+    z-index: 1;
+    width: 260px;
+    height: 200px;
+    background-image: url('destroyedhome.png');
+    background-size: 100%;
+    background-position: center;
+    border: none;
+    font-size: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-size 6s ease-in-out, box-shadow 1s ease, border-color 1s ease, height 1s ease, width 1s ease;
+    border-radius: 15px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid #4e4e4e;
+    text-shadow: 
+        1px 1px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000;
 }
+
+#art:hover {
+    background-size: 170%;
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);
+    border-color: #181818;
+    height: 210px;
+    width: 270px;
+}
+
 
 #certs {
-    top: 80%;
-    left: 57%;
+    top: 70%;
+    left: 65%;
+    width: 100px;
+    height: 100px;
+    background-image: url('sec+.png');
+    background-size: 100%;
+    border: none;
+    cursor: pointer;
+    transition: width 0.3s ease, height 0.3s ease;
+    border-radius: 15px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid #4e4e4e;
+    text-shadow: 
+        1px 1px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000;
 }
-
+#certs:hover {
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);
+    border-color: #181818;
+    width: 110px;
+    height: 110px;
+}
 
 .smiley {
     background-image: url('cat_body.png');
     position: absolute;
-    bottom: -10%;
+    bottom: -8%;
     left: 50%;
     transform: translateX(-50%);
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     background-size: contain;
     background-repeat: no-repeat;
-
 }
-
 
 .eye {
     position: absolute;
-    width:13px;
-    height: 13px;
-    background-color: rgb(207, 207, 207);
-    border-radius: 150%;
-    top: 90px;
+    width: 50px;
+    height: 40px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 90%;
+    top: 183px;
 }
 
 .eye.left {
-    left: 73px;
+    left: 80px;
+    background-image: url('eye1.png');
 }
 
 .eye.right {
-    right: 67px;
+    right: 94px;
+    background-image: url('eye2.png');
+}
+
+.paw1, .paw2 {
+    position: absolute;
+    bottom: -5%;
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .paw1 {
+    left: 40%;
     background-image: url('paw2.png');
-    position: absolute;
-    bottom: -5%;
-    left: 53%;
-    width: 100px;
-    height: 100px;
-    background-size: contain;
-    background-repeat: no-repeat;
 }
+
 .paw2 {
+    right: 38%;
     background-image: url('paw1.png');
-    position: absolute;
-    bottom: -5%;
-    left: 42%;
-    width: 100px;
-    height: 100px;
-    background-size: contain;
-    background-repeat: no-repeat;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .video-background {
+        display: none; /* Hide video on mobile */
+    }
+
+    .mobile-background {
+        display: block; /* Show mobile background on mobile */
+    }
+
+    button {
+        width: 100px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    #game, #art, #certs {
+        top: 70%;
+        width: 120px;
+        height: 45px;
+    }
+
+    #game:hover {
+        width: 130px;
+        height: 50px;
+    }
+
+    #art, #certs {
+        top: auto;
+        left: auto;
+        margin-top: 10px;
+        display: block;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .smiley {
+        bottom: -5%;
+        width: 150px;
+        height: 150px;
+    }
 }
