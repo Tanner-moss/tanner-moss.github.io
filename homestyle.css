@@ -167,13 +167,13 @@ button {
 
 .eye.left {
     left: 80px;
-    background-image: url('eye1.png');
+    background-image: url('eye1.PNG');
     z-index: 2;
 }
 
 .eye.right {
     right: 94px;
-    background-image: url('eye2.png');
+    background-image: url('eye2.PNG');
     z-index: 2;
 }
 
