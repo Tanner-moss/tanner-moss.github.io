@@ -65,7 +65,7 @@ button {
     font-size: 25px;
     font-weight: 600;
     cursor: pointer;
-    transition: background-position 8s ease-in-out, width 0.3s ease, height 0.3s ease;
+    transition: background-position 6s ease-in-out, width 0.3s ease, height 0.3s ease;
     border-radius: 15px;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
     border: 2px solid #4e4e4e;
