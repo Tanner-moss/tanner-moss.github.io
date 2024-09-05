@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warranty Tracker Dashboard</title>
+    <style>
+        body {
+            background-color: #525252;
+            padding: 20px;
+        }
+        .dashboard {
+            display: flex;
+            justify-content: space-between;
+        }
+        .container-left {
+            flex: 1;
+            padding: 20px;
+            margin-right: 20px;
+            background-color: #a5a5a5;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .container-right {
+            flex: 1.5;
+            background-color: #a5a5a5;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow-y: auto;
+            max-height: 600px; /* Adjust the height for scrollability */
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+        img {
+            width: 50px;
+            height: auto;
+        }
+        /* Scrollbar Styling */
+        .container-right {
+            scrollbar-width: thin;
+            scrollbar-color: #888 #444;
+        }
+        .container-right::-webkit-scrollbar {
+            width: 8px;
+        }
+        .container-right::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 10px;
+        }
+        .container-right::-webkit-scrollbar-track {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <h1>In progress!!</h1>
+
+<div class="dashboard">
+    <div class="container-left">
+        <h2>Warranty Tracker</h2>
+
+        <form id="itemForm">
+            <div class="mb-3">
+                <label for="itemType" class="form-label">Item Type</label>
+                <select class="form-select" id="itemType" required>
+                    <option value="Router">Router</option>
+                    <option value="Cable">Cable</option>
+                    <option value="Switch">Switch</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="itemName" class="form-label">Item Name</label>
+                <input type="text" class="form-control" id="itemName" required>
+            </div>
+            <div class="mb-3">
+                <label for="itemId" class="form-label">Item ID</label>
+                <input type="text" class="form-control" id="itemId" required>
+            </div>
+            <div class="mb-3">
+                <label for="warrantyYears" class="form-label">Warranty Life (Years)</label>
+                <input type="number" class="form-control" id="warrantyYears" required>
+            </div>
+            <div class="mb-3">
+                <label for="warrantyDays" class="form-label">Warranty Life (Days)</label>
+                <input type="number" class="form-control" id="warrantyDays" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Item</button>
+        </form>
+    </div>
+
+    <div class="container-right">
+        <table class="table table-striped" id="warrantyTable">
+            <thead>
+            <tr>
+                <th>Item Type</th>
+                <th>Item Image</th>
+                <th>Item Name</th>
+                <th>Item ID</th>
+                <th>Warranty Expiration Date</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Dynamic rows will be added here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        loadTableFromStorage();
+    });
+
+    const form = document.getElementById('itemForm');
+    const table = document.getElementById('warrantyTable').getElementsByTagName('tbody')[0];
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Gather input values
+        const itemType = document.getElementById('itemType').value;
+        const itemName = document.getElementById('itemName').value;
+        const itemId = document.getElementById('itemId').value;
+        const warrantyYears = parseInt(document.getElementById('warrantyYears').value);
+        const warrantyDays = parseInt(document.getElementById('warrantyDays').value);
+
+        // Calculate the expiration date
+        const currentDate = new Date();
+        const warrantyDuration = new Date();
+        warrantyDuration.setFullYear(currentDate.getFullYear() + warrantyYears);
+        warrantyDuration.setDate(warrantyDuration.getDate() + warrantyDays);
+        const formattedDate = warrantyDuration.toISOString().split('T')[0]; // Format date to YYYY-MM-DD
+
+        // Create item object
+        const item = {
+            itemType, itemName, itemId, expirationDate: formattedDate
+        };
+
+        // Add to local storage
+        saveItemToStorage(item);
+
+        // Add to table
+        addItemToTable(item);
+
+        // Reset the form
+        form.reset();
+    });
+
+    function saveItemToStorage(item) {
+        let items = JSON.parse(localStorage.getItem('warrantyItems')) || [];
+        items.push(item);
+        localStorage.setItem('warrantyItems', JSON.stringify(items));
+    }
+
+    function loadTableFromStorage() {
+        let items = JSON.parse(localStorage.getItem('warrantyItems')) || [];
+        items.forEach(item => addItemToTable(item));
+    }
+
+    function addItemToTable(item) {
+        const newRow = table.insertRow();
+
+        const cell1 = newRow.insertCell(0);
+        const cell2 = newRow.insertCell(1);
+        const cell3 = newRow.insertCell(2);
+        const cell4 = newRow.insertCell(3);
+        const cell5 = newRow.insertCell(4);
+        const cell6 = newRow.insertCell(5);
+
+        cell1.textContent = item.itemType;
+
+        // Assign an image based on the item type
+        let imgSrc = '';
+        if (item.itemType === 'Router') {
+            imgSrc = 'router.png';
+        } else if (item.itemType === 'Cable') {
+            imgSrc = 'cable.png';
+        } else if (item.itemType === 'Switch') {
+            imgSrc = 'switch.png';
+        }
+
+        cell2.innerHTML = `<img src="${imgSrc}" alt="${item.itemType}">`;
+        cell3.textContent = item.itemName;
+        cell4.textContent = item.itemId;
+        cell5.textContent = item.expirationDate;
+        cell6.innerHTML = `<button class="btn btn-danger btn-sm" onclick="deleteItem(this, '${item.itemId}')">Delete</button>`;
+    }
+
+    function deleteItem(button, itemId) {
+        // Remove row from table
+        const row = button.parentElement.parentElement;
+        row.remove();
+
+        // Remove item from local storage
+        let items = JSON.parse(localStorage.getItem('warrantyItems')) || [];
+        items = items.filter(item => item.itemId !== itemId);
+        localStorage.setItem('warrantyItems', JSON.stringify(items));
+    }
+</script>
+
+</body>
+</html>
+
+
+
