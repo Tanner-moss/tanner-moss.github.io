@@ -58,9 +58,10 @@
             background-color: #444;
         }
     </style>
+    <!-- Adding DOMPurify via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@2.3.6/dist/purify.min.js"></script>
 </head>
 <body>
-    <h1>In progress!!</h1>
 
 <div class="dashboard">
     <div class="container-left">
@@ -125,12 +126,12 @@
     form.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        // Gather input values
-        const itemType = document.getElementById('itemType').value;
-        const itemName = document.getElementById('itemName').value;
-        const itemId = document.getElementById('itemId').value;
-        const warrantyYears = parseInt(document.getElementById('warrantyYears').value);
-        const warrantyDays = parseInt(document.getElementById('warrantyDays').value);
+        // Gather input values and sanitize them using DOMPurify
+        const itemType = DOMPurify.sanitize(document.getElementById('itemType').value);
+        const itemName = DOMPurify.sanitize(document.getElementById('itemName').value);
+        const itemId = DOMPurify.sanitize(document.getElementById('itemId').value);
+        const warrantyYears = parseInt(DOMPurify.sanitize(document.getElementById('warrantyYears').value));
+        const warrantyDays = parseInt(DOMPurify.sanitize(document.getElementById('warrantyDays').value));
 
         // Calculate the expiration date
         const currentDate = new Date();
@@ -175,28 +176,36 @@
         const cell5 = newRow.insertCell(4);
         const cell6 = newRow.insertCell(5);
 
+        // Safely add text content to cells
         cell1.textContent = item.itemType;
-
-        // Assign an image based on the item type
-        let imgSrc = '';
+        
+        // Safely add an image
+        let imgElement = document.createElement('img');
         if (item.itemType === 'Router') {
-            imgSrc = 'router.PNG';
+            imgElement.src = 'router.png';
         } else if (item.itemType === 'Cable') {
-            imgSrc = 'cable.PNG';
+            imgElement.src = 'cable.png';
         } else if (item.itemType === 'Switch') {
-            imgSrc = 'switch.PNG';
+            imgElement.src = 'switch.png';
         }
+        imgElement.alt = item.itemType;
+        cell2.appendChild(imgElement);
 
-        cell2.innerHTML = `<img src="${imgSrc}" alt="${item.itemType}">`;
+        // Safely add text content for item details
         cell3.textContent = item.itemName;
         cell4.textContent = item.itemId;
         cell5.textContent = item.expirationDate;
-        cell6.innerHTML = `<button class="btn btn-danger btn-sm" onclick="deleteItem(this, '${item.itemId}')">Delete</button>`;
+
+        // Create delete button safely
+        let deleteBtn = document.createElement('button');
+        deleteBtn.className = 'btn btn-danger btn-sm';
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.addEventListener('click', () => deleteItem(newRow, item.itemId));
+        cell6.appendChild(deleteBtn);
     }
 
-    function deleteItem(button, itemId) {
+    function deleteItem(row, itemId) {
         // Remove row from table
-        const row = button.parentElement.parentElement;
         row.remove();
 
         // Remove item from local storage
