@@ -168,11 +168,13 @@ button {
 .eye.left {
     left: 80px;
     background-image: url('eye1.png');
+    z-index: 2;
 }
 
 .eye.right {
     right: 94px;
     background-image: url('eye2.png');
+    z-index: 2;
 }
 
 .paw1, .paw2 {
@@ -194,46 +196,4 @@ button {
     background-image: url('paw1.png');
 }
 
-/* Mobile Styles */
-@media (max-width: 768px) {
-    .video-background {
-        display: none; /* Hide video on mobile */
-    }
 
-    .mobile-background {
-        display: block; /* Show mobile background on mobile */
-    }
-
-    button {
-        width: 100px;
-        height: 40px;
-        font-size: 14px;
-    }
-
-    #game, #art, #certs {
-        top: 70%;
-        width: 120px;
-        height: 45px;
-    }
-
-    #game:hover {
-        width: 130px;
-        height: 50px;
-    }
-
-    #art, #certs {
-        top: auto;
-        left: auto;
-        margin-top: 10px;
-        display: block;
-        position: relative;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .smiley {
-        bottom: -5%;
-        width: 150px;
-        height: 150px;
-    }
-}
