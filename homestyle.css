@@ -206,7 +206,7 @@ button {
 
 .eye.left {
     left: 80px;
-    background-image: url('eye1.PNG');
+    background-image: url('eye1.png');
     z-index: 2;
 }
 
