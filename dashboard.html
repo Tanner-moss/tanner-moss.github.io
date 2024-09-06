@@ -6,29 +6,34 @@
     <title>Warranty Tracker Dashboard</title>
     <style>
         body {
-            background-color: #525252;
+            background-color: #1b1b1b;
             padding: 20px;
+            font-family: Arial, sans-serif;
+            color: white;
         }
         .dashboard {
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap;
         }
         .container-left {
             flex: 1;
             padding: 20px;
             margin-right: 20px;
-            background-color: #a5a5a5;
+            background-color: #3b3b3b;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
+            max-width: 250px;
         }
         .container-right {
-            flex: 1.5;
-            background-color: #a5a5a5;
+            flex: 3;
+            background-color: #2e2e2e;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            overflow-y: auto;
-            max-height: 600px; /* Adjust the height for scrollability */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
         }
         h2 {
             text-align: center;
@@ -42,31 +47,140 @@
             width: 50px;
             height: auto;
         }
-        /* Scrollbar Styling */
+        .current-time {
+            background-color: #707070;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .item-list {
+            max-height: 300px;
+            overflow-y: auto;
+            background-color: #707070;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .item-list table {
+            width: 100%;
+            color: white;
+        }
         .container-right {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .rounded-container {
+    background-color: #4b4b4b;
+    width: 120px;
+    height: 120px; /* Adjust height to fit text */
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column; /* Stack button and text vertically */
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* Add some padding */
+}
+
+.rounded-container button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #4b4b4b;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.rounded-container span {
+    color: white;
+    margin-top: 15px; /* Space between button and text */
+    font-size: 14px; /* Adjust text size */
+    text-align: center; /* Center the text */
+}
+        /* Scrollbar Styling */
+        .item-list {
             scrollbar-width: thin;
             scrollbar-color: #888 #444;
         }
-        .container-right::-webkit-scrollbar {
+        .item-list::-webkit-scrollbar {
             width: 8px;
         }
-        .container-right::-webkit-scrollbar-thumb {
+        .item-list::-webkit-scrollbar-thumb {
             background-color: #888;
             border-radius: 10px;
         }
-        .container-right::-webkit-scrollbar-track {
+        .item-list::-webkit-scrollbar-track {
             background-color: #444;
         }
+    #button1 {
+        height: 90px;
+        width: 90px;
+        background-image: url("check.png");
+        background-size: contain; /* Absolute positioning inside the container */
+        background-color: #4b4b4b;
+        border-radius: 15px;
+    }
+
+    #button2 {
+        height: 100px;
+        width: 100px;
+        background-image: url("x.png");
+        background-size: contain;
+        background-position: center;
+        background-color: #4b4b4b;
+        border-radius: 15px;
+    }
+
+    #button3 {
+        height: 100px;
+        width: 100px;
+        background-image: url("notes.png");
+        background-size: contain;
+        background-position: center;
+        background-color: #4b4b4b;
+        border-radius: 15px;
+    }
+
+    #button4 {
+        height: 100px;
+        width: 100px;
+        background-image: url("router.png");
+        background-size: contain;
+        background-position: center;
+        background-color: #4b4b4b;
+        border-radius: 15px;
+        box-shadow: 5px 5px 13px rgba(0, 0, 0, 0.2);
+    }
     </style>
     <!-- Adding DOMPurify via CDN -->
     <script src="https://cdn.jsdelivr.net/npm/dompurify@2.3.6/dist/purify.min.js"></script>
 </head>
 <body>
 
-<div class="dashboard">
-    <div class="container-left">
-        <h2>Warranty Tracker</h2>
+    <h1>Work in progress!!</h1>
 
+<div class="dashboard">
+    <!-- Left Container with Time and Item List -->
+    <div class="container-left">
+        <div class="current-time" id="currentTime">
+            <!-- Current Time will be inserted here -->
+        </div>
+
+        <div class="item-list">
+            <table class="table table-striped" id="warrantyTable">
+                <thead>
+                <tr>
+                    <th>Item Type</th>
+                    <th>Item Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Dynamic rows will be added here -->
+                </tbody>
+            </table>
+        </div>
+        
         <form id="itemForm">
             <div class="mb-3">
                 <label for="itemType" class="form-label">Item Type</label>
@@ -96,28 +210,30 @@
         </form>
     </div>
 
+    <!-- Right Container with Rounded Containers -->
     <div class="container-right">
-        <table class="table table-striped" id="warrantyTable">
-            <thead>
-            <tr>
-                <th>Item Type</th>
-                <th>Item Image</th>
-                <th>Item Name</th>
-                <th>Item ID</th>
-                <th>Warranty Expiration Date</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- Dynamic rows will be added here -->
-            </tbody>
-        </table>
+        <!-- Dynamically Generated Rounded Containers will appear here -->
+        <div class="rounded-container">
+            <button id="button1"></button>
+            <span>active</span>
+        </div>
+        <div class="rounded-container">
+            <button id="button2"></button>
+            <span>expired</span>
+        </div>
+        <div class="rounded-container">
+            <button id="button3"></button>
+            <span>notes</span>
+        </div>
+
     </div>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         loadTableFromStorage();
+        updateTime();
+        setInterval(updateTime, 1000); // Update time every second
     });
 
     const form = document.getElementById('itemForm');
@@ -171,52 +287,22 @@
 
         const cell1 = newRow.insertCell(0);
         const cell2 = newRow.insertCell(1);
-        const cell3 = newRow.insertCell(2);
-        const cell4 = newRow.insertCell(3);
-        const cell5 = newRow.insertCell(4);
-        const cell6 = newRow.insertCell(5);
 
         // Safely add text content to cells
         cell1.textContent = item.itemType;
-        
-        // Safely add an image
-        let imgElement = document.createElement('img');
-        if (item.itemType === 'Router') {
-            imgElement.src = 'router.png';
-        } else if (item.itemType === 'Cable') {
-            imgElement.src = 'cable.png';
-        } else if (item.itemType === 'Switch') {
-            imgElement.src = 'switch.png';
-        }
-        imgElement.alt = item.itemType;
-        cell2.appendChild(imgElement);
-
-        // Safely add text content for item details
-        cell3.textContent = item.itemName;
-        cell4.textContent = item.itemId;
-        cell5.textContent = item.expirationDate;
-
-        // Create delete button safely
-        let deleteBtn = document.createElement('button');
-        deleteBtn.className = 'btn btn-danger btn-sm';
-        deleteBtn.textContent = 'Delete';
-        deleteBtn.addEventListener('click', () => deleteItem(newRow, item.itemId));
-        cell6.appendChild(deleteBtn);
+        cell2.textContent = item.itemName;
     }
 
-    function deleteItem(row, itemId) {
-        // Remove row from table
-        row.remove();
-
-        // Remove item from local storage
-        let items = JSON.parse(localStorage.getItem('warrantyItems')) || [];
-        items = items.filter(item => item.itemId !== itemId);
-        localStorage.setItem('warrantyItems', JSON.stringify(items));
+    function updateTime() {
+        const currentTimeElem = document.getElementById('currentTime');
+        const now = new Date();
+        const timeString = now.toLocaleTimeString();
+        const dateString = now.toLocaleDateString();
+        currentTimeElem.textContent = `${dateString} ${timeString}`;
     }
 </script>
 
 </body>
 </html>
-
 
 
