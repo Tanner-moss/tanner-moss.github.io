@@ -163,6 +163,7 @@ button {
     height: 100px;
     background-image: url('dashboard.PNG');
     background-size: 100%;
+    background-color: #313131;
     border: none;
     cursor: pointer;
     transition: width 0.3s ease, height 0.3s ease;
