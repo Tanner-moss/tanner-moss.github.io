@@ -218,12 +218,12 @@ button {
 
 .eye.left {
     left: 198px;
-    background-image: url('eye1.png');
+    background-image: url('eye1.PNG');
 }
 
 .eye.right {
     right: 184px;
-    background-image: url('eye2.png');
+    background-image: url('eye2.PNG');
 }
 
 .paw1, .paw2 {
