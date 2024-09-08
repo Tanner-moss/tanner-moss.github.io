@@ -3,6 +3,7 @@ body {
     height: 100vh;
     margin: 0;
     display: flex;
+    font-family: Verdana, sans-serif;
     background-color: #a2b1b8;
     overflow: hidden;
     justify-content: center;
@@ -91,23 +92,22 @@ button {
 }
 
 
-
-
 #art {
     top: 60%;
     left: 43%;
     z-index: 1;
     width: 260px;
     height: 200px;
-    background-image: url('destroyedhome.png');
+    font: monospace;
+    background-image: url('apple2.png');
     background-size: 100%;
     background-position: center;
     border: none;
     color: rgb(253, 253, 253);
     font-size: 19px;
-    font-weight: 300;
+    font-weight: 100;
     cursor: pointer;
-    transition: background-size 6s ease-in-out, box-shadow 1s ease, border-color 1s ease, height 1s ease, width 1s ease;
+    transition: background-size 2.5s ease-in-out, box-shadow 1s ease, border-color 1s ease, height 1s ease, width 1s ease;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
     border: 2px solid #4e4e4e;
     padding: 0 18px;
@@ -162,7 +162,7 @@ button {
     left: 10%;
     width: 100px;
     height: 100px;
-    background-image: url('dashboard.PNG');
+    background-image: url('dashboard.png');
     background-size: 100%;
     background-color: #313131;
     border: none;
@@ -176,6 +176,9 @@ button {
         -1px -1px 0 #000,
         1px -1px 0 #000,
         -1px 1px 0 #000;
+}
+#dashboard-text {
+    font: courier;
 }
 #dashboard:hover {
     box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);
@@ -194,7 +197,7 @@ button {
     height: 300px;
     background-size: contain;
     background-repeat: no-repeat;
-    z-index: 2;
+    z-index: 2; /* Keep this above the eyes */
 }
 
 .eyes {
@@ -204,7 +207,7 @@ button {
     transform: translateX(-50%);
     width: 500px;
     height: 500px;
-    z-index: 1; 
+    z-index: 1; /* Make sure the eyes are below the smiley */
 }
 
 .eye {
@@ -219,13 +222,15 @@ button {
 
 .eye.left {
     left: 198px;
-    background-image: url('eye1.PNG');
+    background-image: url('eye1.png');
 }
 
 .eye.right {
     right: 184px;
-    background-image: url('eye2.PNG');
+    background-image: url('eye2.png');
 }
+
+
 
 .paw1, .paw2 {
     position: absolute;
@@ -245,6 +250,166 @@ button {
     right: 38%;
     background-image: url('paw1.png');
 }
+
+
+/* homestyle.css */
+
+
+.tab-slider {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 300px;
+    height: 35px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+}
+
+.tab-slider-inner {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.tab {
+    position: relative;
+    z-index: 1;
+    width: 33.33%;
+    padding: 10px;
+    background: none;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.slider {
+    position: absolute;
+    width: 33.33%;
+    height: 100%;
+    background-color: #0e8088; /* Slider color */
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+    z-index: 0;
+}
+
+/* Flexbox Container for Scrolling Content */
+.scroll-container {
+    position: relative;
+    top: 70px;
+    width: 100%;
+    height: 300px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    display: flex;
+    justify-content: start;
+}
+
+.scroll-content {
+    display: flex;
+    width: 300%;
+}
+
+
+
+.scroll-container {
+    position: absolute;
+    top: 70px;
+    left: 15px;
+    width: 300px; /* Must take full screen width */
+    height: 500px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    display: flex;
+    justify-content: start;
+}
+
+.scroll-content {
+    display: flex;
+    width: 300%; /* Must be 300% to match 3 content divs */
+}
+
+.content {
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    margin: 0 10px;
+    box-sizing: border-box;
+    display: none; /* Hide all content by default */
+}
+
+.content.active {
+    display: block; /* Show the active content */
+}
+
+.thm {
+    height: 50px;
+    width: 50px;
+    background-image: url('thm.png');
+    top: 300px;
+}
+
+
+/* Right-side Button Container */
+.button-container {
+    position: absolute;
+    top: 70px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    width: 150px; /* Adjust based on button size */
+    height: 500px; /* Increase if necessary */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    display: flex;
+    flex-direction: column; /* Ensure buttons stack vertically */
+    align-items: stretch; /* Stretch buttons to fill the container width */
+    padding: 10px; /* Padding for spacing */
+    box-sizing: border-box; /* Include padding in width and height calculations */
+}
+
+/* Adjusted for better layout */
+.button-scroll {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px; /* Space between buttons */
+}
+
+/* Button Styles */
+a {
+    text-decoration: none; /* Remove underline from links */
+}
+
+.scroll-button {
+    width: 100%; /* Ensure buttons fill the width of the container */
+    height: 50px; /* Adjust based on button size */
+    background-size: cover;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: transparent; /* Ensure no background color obstructs image visibility */
+}
+
+/* Ensure proper alignment */
+.scroll-button:hover {
+    background-color: rgba(0, 0, 0, 0.3); /* Optional hover effect */
+}
+
+
+
+.scroll-button:hover {
+    background-color: rgba(0, 0, 0, 0.3); /* Optional hover effect */
+}
+
 
 
 
