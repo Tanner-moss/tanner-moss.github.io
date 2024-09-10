@@ -8,10 +8,12 @@
         body {
             margin: 0;
             height: 100vh; /* Ensure the body takes up the full height of the viewport */
-            display: flex;
             justify-content: center; /* Center the gallery horizontally */
             align-items: center; /* Center the gallery vertically */
-            background-color: #1d1d1d; /* Optional: Set a background color for the page */
+            background-image: url("space.png");
+            background-size: cover; /* This ensures the background covers the entire page */
+            background-position: center; /* Positions the image in the center */
+            background-repeat: no-repeat;
             overflow: hidden;
         }
         .gallery {
@@ -23,16 +25,17 @@
             margin-top: 20px; /* Optional: Add some margin to separate from the top */
         }
         .gallery img {
-            width: 300px;
+            width: 200px;
             height: auto;
             cursor: pointer;
             object-fit: contain;
             border-radius: 15px;
             border: 2px solid #cacaca;
-            
+            transition: transform 0.3s ease, border 0.3s ease;
         }
         .gallery img:hover {
-            transform: scale(1.2)
+            transform: scale(1.2);
+            border-color: #fff; /* Optional: Change border color on hover */
         }
         .modal {
             display: none;
@@ -44,6 +47,8 @@
             background: rgba(0, 0, 0, 0.8);
             justify-content: center;
             align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
         .modal img {
             max-width: 98%;
@@ -52,6 +57,7 @@
         }
         .modal.active {
             display: flex;
+            opacity: 1;
         }
         .modal .close {
             position: absolute;
@@ -60,6 +66,10 @@
             font-size: 30px;
             color: #fff;
             cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .modal .close:hover {
+            color: #ff0000; /* Optional: Change color on hover */
         }
         #home {
             height: 50px;
@@ -70,7 +80,11 @@
             color: #fff;
             bottom: 20%;
             left: 50%;
-
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        #home.hidden {
+            opacity: 0;
+            transform: scale(0.8);
         }
     </style>
 </head>
@@ -82,7 +96,7 @@
     <img src="creepy.png" alt="Image 3" onclick="openModal('creepy.png')">
     <img src="deer.png" alt="Image 4" onclick="openModal('deer.png')">
     <img src="praying_mantis.png" alt="Image 5" onclick="openModal('praying_mantis.png')">
-    <img src="destroyedhome.png" alt="Image 5" onclick="openModal('destroyedhome.png')">
+    <img src="destroyedhome.png" alt="Image 6" onclick="openModal('destroyedhome.png')">
 </div>
 
 <div id="modal" class="modal">
@@ -91,19 +105,20 @@
 </div>
 <div>
     <a href="index.html">
-    <button id ="home">Home</button>
+        <button id="home">Home</button>
     </a>
 </div>
+
 <script>
     function openModal(src) {
         document.getElementById('modal').classList.add('active');
         document.getElementById('modal-img').src = src;
-        document.getElementById('home').style.display = 'none';
+        document.getElementById('home').classList.add('hidden'); // Smoothly hide the home button
     }
 
     function closeModal() {
         document.getElementById('modal').classList.remove('active');
-        document.getElementById('home').style.display = 'block';
+        document.getElementById('home').classList.remove('hidden'); // Smoothly show the home button
     }
 </script>
 
