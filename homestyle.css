@@ -1,4 +1,3 @@
-/* Default Styles (Desktop) */
 body {
     height: 100vh;
     margin: 0;
@@ -52,11 +51,58 @@ button {
     transition: all 0.3s ease; /* Smooth transition for responsive design */
 }
 
+.cyber {
+    top: 85%;
+    left: 10%;
+    height: 100px;
+    width: 150px;
+    align-items: center;
+    background-image: linear-gradient(144deg, #c5a765 20%, #5B42F3, #00DDEB);
+    background-size: 200%;
+    background-position: left; /* Initial position */
+    border: 0;
+    border-radius: 8px;
+    text-align: center;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    font-family: Phantomsans, sans-serif;
+    font-size: 20px;
+    line-height: 1em;
+    max-width: 100%;
+    min-width: 140px;
+    padding: 3px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: normal;
+    cursor: pointer;
+    transition: width 2s ease, height 2s ease, background-position 1.5s ease-in-out, box-shadow 0.4s ease-in-out;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px, /* Existing shadow */
+    0 0 10px 2px rgba(255, 92, 135, 0.7); /* Soft, smooth outline */
+    box-sizing: border-box;
+    z-index: 3;
+}
+
+.cyber:hover {
+    background-position: right; /* Move background on hover */
+    height: 110px;
+    width: 160px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px, /* Existing shadow */
+    0 0 15px 4px rgba(255, 92, 135, 0.9);
+
+}
+
+
+
+
 /* Game Button */
 #game {
     position: absolute;
-    top: 70%;
-    left: 18%;
+    top: 85%;
+    right: 17%;
     width: 300px;
     height: 100px;
     background-image: url('allmaps.jpg');
@@ -93,8 +139,8 @@ button {
 
 
 #art {
-    top: 60%;
-    left: 43%;
+    top: 75%;
+    right: 1%;
     z-index: 1;
     width: 260px;
     height: 200px;
@@ -133,8 +179,8 @@ button {
 
 
 #certs {
-    top: 70%;
-    left: 65%;
+    top: 85%;
+    left: 20%;
     width: 100px;
     height: 100px;
     background-image: url('sec+.png');
@@ -159,7 +205,7 @@ button {
 }
 #dashboard {
     top: 85%;
-    left: 10%;
+    left: 2%;
     width: 100px;
     height: 100px;
     background-image: url('dashboard.png');
@@ -294,7 +340,7 @@ button {
     position: absolute;
     width: 33.33%;
     height: 100%;
-    background-color: #0e8088; /* Slider color */
+    background-color: #59880e; /* Slider color */
     transition: transform 0.3s ease;
     border-radius: 10px;
     z-index: 0;
@@ -341,8 +387,11 @@ button {
     width: 100%;
     padding: 5px;
     color: #ffffff;
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 8px;
+    backdrop-filter: blur(4px) saturate(180%);
+    -webkit-backdrop-filter: blur(4px) saturate(180%);
+    background-color: rgba(44, 44, 44, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
     margin: 0 10px;
     box-sizing: border-box;
     display: none; /* Hide all content by default */
@@ -352,61 +401,74 @@ button {
     display: block; /* Show the active content */
 }
 
-.thm {
-    height: 50px;
-    width: 50px;
-    background-image: url('thm.png');
-    top: 300px;
+.charity-header {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 280px;
+    height: 35px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+    color: white;
 }
 
-
-/* Right-side Button Container */
 .button-container {
     position: absolute;
     top: 70px; /* Adjust as needed */
     right: 10px; /* Adjust as needed */
-    width: 150px; /* Adjust based on button size */
-    height: 500px; /* Increase if necessary */
-    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    width: 280px; /* Adjust based on button size */
+    height: 510px; /* Height to allow vertical scrolling */
+    overflow: hidden;
     display: flex;
-    flex-direction: column; /* Ensure buttons stack vertically */
-    align-items: stretch; /* Stretch buttons to fill the container width */
+    backdrop-filter: blur(4px) saturate(180%);
+    -webkit-backdrop-filter: blur(4px) saturate(180%);
+    background-color: rgba(44, 44, 44, 0.75);
+    border-radius: 12px;
     padding: 10px; /* Padding for spacing */
     box-sizing: border-box; /* Include padding in width and height calculations */
+    flex-direction: column; /* Ensure vertical stacking */
 }
 
-/* Adjusted for better layout */
+/* Scroll Container */
 .button-scroll {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Ensure buttons are stacked vertically */
     width: 100%;
-    gap: 10px; /* Space between buttons */
+    gap: 100px; /* Space between buttons */
 }
 
-/* Button Styles */
+/* Link Styles */
 a {
     text-decoration: none; /* Remove underline from links */
 }
 
+/* Button Styles */
 .scroll-button {
-    width: 100%; /* Ensure buttons fill the width of the container */
-    height: 50px; /* Adjust based on button size */
-    background-size: cover;
+    width: 92%; /* Ensure buttons fill the width of the container */
+    height: 85px; /* Adjust height based on your design */
+    background-color: white;
+    background-size: contain; /* Ensure the image fits within the button without cropping */
     background-position: center;
+    background-repeat: no-repeat; /* Ensure the image doesn't repeat */
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    background-color: transparent; /* Ensure no background color obstructs image visibility */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+    border-radius: 15px;
+    box-shadow: 3px 3px 20px rgba(61, 97, 45, 0.3);
+    border: 3px solid #99c552;
+    padding: 10px;
+
 }
 
-/* Ensure proper alignment */
+/* Hover effect */
 .scroll-button:hover {
-    background-color: rgba(0, 0, 0, 0.3); /* Optional hover effect */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Increase shadow for a hover pop effect */
+    transform: translateY(-2px); /* Lift the button slightly on hover */
 }
 
 
-
-.scroll-button:hover {
-    background-color: rgba(0, 0, 0, 0.3); /* Optional hover effect */
-}
 

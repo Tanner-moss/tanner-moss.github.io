@@ -5,122 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Art Portfolio</title>
     <style>
-        body {
-            margin: 0;
-            height: 100vh; /* Ensure the body takes up the full height of the viewport */
-            justify-content: center; /* Center the gallery horizontally */
-            align-items: center; /* Center the gallery vertically */
-            background-image: url("space.png");
-            background-size: cover; /* This ensures the background covers the entire page */
-            background-position: center; /* Positions the image in the center */
-            background-repeat: no-repeat;
-            overflow: hidden;
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center; /* Center images horizontally */
-            align-items: center; /* Center images vertically within the gallery container */
-            margin-top: 20px; /* Optional: Add some margin to separate from the top */
-        }
-        .gallery img {
-            width: 200px;
-            height: auto;
-            cursor: pointer;
-            object-fit: contain;
-            border-radius: 15px;
-            border: 2px solid #cacaca;
-            transition: transform 0.3s ease, border 0.3s ease;
-        }
-        .gallery img:hover {
-            transform: scale(1.2);
-            border-color: #fff; /* Optional: Change border color on hover */
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .modal img {
-            max-width: 98%;
-            max-height: 98%;
-            border: 2px solid #cacaca;
-        }
-        .modal.active {
-            display: flex;
-            opacity: 1;
-        }
-        .modal .close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 30px;
-            color: #fff;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .modal .close:hover {
-            color: #ff0000; /* Optional: Change color on hover */
-        }
-        #home {
-            height: 50px;
-            width: 100px;
-            position: absolute;
-            background-color: black;
-            border-radius: 14px;
-            color: #fff;
-            bottom: 20%;
-            left: 50%;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        #home.hidden {
-            opacity: 0;
-            transform: scale(0.8);
-        }
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    position: relative; /* Ensure proper positioning of layers */
+}
+.background2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("space.png");
+    background-repeat: no-repeat; /* Your stars image */
+    background-size: cover;
+    z-index: 0; /* Static background layer */
+}
+.background1 {
+    position: absolute; /* Ensure it's above the static background layer */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("stars.jpg");
+    background-size: cover; /* This ensures the background covers the entire page */
+    background-position: center; /* Positions the image in the center */
+    background-repeat: repeat;
+    overflow: hidden;
+    z-index: -1; /* Behind the foreground content */
+    animation: moveBackground 30s linear infinite;
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    z-index: 3; /* Ensure it's clickable above the layers */
+    position: relative;
+}
+.gallery img {
+    width: 200px;
+    height: auto;
+    cursor: pointer;
+    object-fit: contain;
+    border-radius: 15px;
+    border: 2px solid #cacaca;
+    transition: transform 0.3s ease, border 0.3s ease;
+}
+.gallery img:hover {
+    transform: scale(1.2);
+    border-color: #fff;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 4; /* Bring modal to the front */
+}
+.modal img {
+    max-width: 98%;
+    max-height: 98%;
+    border: 2px solid #cacaca;
+}
+.modal.active {
+    display: flex;
+    opacity: 1;
+}
+.modal .close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.modal .close:hover {
+    color: #ff0000;
+}
+#home {
+    height: 50px;
+    width: 100px;
+    position: absolute;
+    background-color: rgb(71, 71, 71);
+    border-radius: 14px;
+    color: #fff;
+    bottom: 4%;
+    left: 2%;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 3; /* Ensure the home button is clickable */
+}
+#home.hidden {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+/* Keyframe animation for background movement */
+@keyframes moveBackground {
+    0% { background-position: 0 0; }
+    100% { background-position: -100% -100%; }
+}
+
     </style>
 </head>
 <body>
 
-<div class="gallery">
-    <img src="apple.png" alt="Image 1" onclick="openModal('apple.png')">
-    <img src="soldiers.png" alt="Image 2" onclick="openModal('soldiers.png')">
-    <img src="creepy.png" alt="Image 3" onclick="openModal('creepy.png')">
-    <img src="deer.png" alt="Image 4" onclick="openModal('deer.png')">
-    <img src="praying_mantis.png" alt="Image 5" onclick="openModal('praying_mantis.png')">
-    <img src="destroyedhome.png" alt="Image 6" onclick="openModal('destroyedhome.png')">
-</div>
+<div class="background2"></div>
+<div class="background1"></div>
 
-<div id="modal" class="modal">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img id="modal-img" src="" alt="Large Image">
-</div>
-<div>
-    <a href="index.html">
-        <button id="home">Home</button>
-    </a>
+<div class="foreground-layer">
+    <div class="gallery">
+        <img src="apple.png" alt="Image 1" onclick="openModal('apple.png')">
+        <img src="soldiers.png" alt="Image 2" onclick="openModal('soldiers.png')">
+        <img src="creepy.png" alt="Image 3" onclick="openModal('creepy.png')">
+        <img src="deer.png" alt="Image 4" onclick="openModal('deer.png')">
+        <img src="praying_mantis.png" alt="Image 5" onclick="openModal('praying_mantis.png')">
+        <img src="destroyedhome.png" alt="Image 6" onclick="openModal('destroyedhome.png')">
+    </div>
+
+    <div id="modal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modal-img" src="" alt="Large Image">
+    </div>
+    <div>
+        <a href="index.html">
+            <button id="home">Home</button>
+        </a>
+    </div>
 </div>
 
 <script>
     function openModal(src) {
         document.getElementById('modal').classList.add('active');
         document.getElementById('modal-img').src = src;
-        document.getElementById('home').classList.add('hidden'); // Smoothly hide the home button
+        document.getElementById('home').classList.add('hidden');
     }
 
     function closeModal() {
         document.getElementById('modal').classList.remove('active');
-        document.getElementById('home').classList.remove('hidden'); // Smoothly show the home button
+        document.getElementById('home').classList.remove('hidden');
     }
 </script>
 
 </body>
 </html>
+
