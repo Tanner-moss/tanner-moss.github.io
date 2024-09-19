@@ -414,6 +414,8 @@ button {
     align-items: center;
     overflow: hidden;
     color: white;
+    font-family: Phantomsans, sans-serif;
+    font-weight: bold;
 }
 
 .button-container {
