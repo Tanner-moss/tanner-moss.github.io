@@ -51,27 +51,60 @@ button {
     transition: all 0.3s ease;
 }
 
-.button-row {
+.button-wheel {
     position: absolute;
-    bottom: 5%;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 20px;
-    border-radius: 25px;
-    margin: 0 2%;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    z-index: 4;
 }
 
-.button-row a {
+.button-wheel a {
     text-decoration: none;
-    margin: 0 10px;
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.button-wheel a:nth-child(1) {
+    transform: rotate(-60deg) translateY(-200px) rotate(60deg);
+    left: 50%;
+    top: 50%;
+    margin-left: -90px;
+    margin-top: -60px;
+}
+
+.button-wheel a:nth-child(2) {
+    transform: rotate(-30deg) translateY(-200px) rotate(30deg);
+    left: 50%;
+    top: 50%;
+    margin-left: -90px;
+    margin-top: -60px;
+}
+
+.button-wheel a:nth-child(3) {
+    transform: rotate(0deg) translateY(-200px) rotate(0deg);
+    left: 50%;
+    top: 50%;
+    margin-left: -90px;
+    margin-top: -60px;
+}
+
+.button-wheel a:nth-child(4) {
+    transform: rotate(30deg) translateY(-200px) rotate(-30deg);
+    left: 50%;
+    top: 50%;
+    margin-left: -90px;
+    margin-top: -60px;
+}
+
+.button-wheel a:nth-child(5) {
+    transform: rotate(60deg) translateY(-200px) rotate(-60deg);
+    left: 50%;
+    top: 50%;
+    margin-left: -90px;
+    margin-top: -60px;
 }
 
 .glass-button {
