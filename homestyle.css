@@ -48,189 +48,131 @@ button {
     position: absolute;
     padding: 10px 20px;
     font-size: 16px;
-    transition: all 0.3s ease; /* Smooth transition for responsive design */
+    transition: all 0.3s ease;
 }
 
-.cyber {
-    top: 85%;
-    left: 10%;
-    height: 100px;
-    width: 150px;
-    align-items: center;
-    background-image: linear-gradient(144deg, #c5a765 20%, #5B42F3, #00DDEB);
-    background-size: 200%;
-    background-position: left; /* Initial position */
-    border: 0;
-    border-radius: 8px;
-    text-align: center;
-    box-sizing: border-box;
-    color: #FFFFFF;
+.button-row {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: center;
-    font-family: Phantomsans, sans-serif;
-    font-size: 20px;
-    line-height: 1em;
-    max-width: 100%;
-    min-width: 140px;
-    padding: 3px;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 20px;
+    border-radius: 25px;
+    margin: 0 2%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.button-row a {
     text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: normal;
+    margin: 0 10px;
+}
+
+.glass-button {
+    position: relative;
+    width: 180px;
+    height: 120px;
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
     cursor: pointer;
-    transition: width 2s ease, height 2s ease, background-position 1.5s ease-in-out, box-shadow 0.4s ease-in-out;
-    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px, /* Existing shadow */
-    0 0 10px 2px rgba(255, 92, 135, 0.7); /* Soft, smooth outline */
-    box-sizing: border-box;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-family: Phantomsans, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glass-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(4px) saturate(180%);
+    -webkit-backdrop-filter: blur(4px) saturate(180%);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: inherit;
+    z-index: 1;
+}
+
+.glass-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: translateX(-100%) translateY(-100%);
+    transition: transform 0.6s ease;
+    z-index: 2;
+    opacity: 0;
+}
+
+.glass-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.glass-button:active::after {
+    opacity: 1;
+    transform: translateX(100%) translateY(100%);
+}
+
+.glass-button > * {
+    position: relative;
     z-index: 3;
 }
 
-.cyber:hover {
-    background-position: right; /* Move background on hover */
-    height: 110px;
-    width: 160px;
-    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px, /* Existing shadow */
-    0 0 15px 4px rgba(255, 92, 135, 0.9);
-
+.cyber {
+    background-image: linear-gradient(144deg, #c5a765 20%, #5B42F3, #00DDEB);
+    background-size: 200%;
+    background-position: left;
 }
 
 
 
 
-/* Game Button */
 #game {
-    position: absolute;
-    top: 85%;
-    right: 17%;
-    width: 300px;
-    height: 100px;
     background-image: url('allmaps.jpg');
-    background-size: 425%;
-    background-position: 0 0;
-    border: none;
-    color: rgb(253, 253, 253);
-    font-size: 25px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-position 6s ease-in-out, width 0.3s ease, height 0.3s ease;
-    border-radius: 15px;
-    box-shadow: #1a140d 5px 5px 0 0;
-    border: 2px solid #1f1a10;
-    text-shadow: 
-        1px 1px 0 #000,
-        -1px -1px 0 #000,
-        1px -1px 0 #000,
-        -1px 1px 0 #000;
-    mix-blend-mode: difference; /* This will blend the button with the background */
-}
-
-#game:hover {
-    background-position: 100% 0;
-    width: 330px;
-    height: 115px;
-    mix-blend-mode: normal; /* Change blend mode on hover to reveal hover effect */
-}
-
-#game:active {
-    box-shadow: #16120b 2px 2px 0 0;
-    transform: translate(5px, 5px);
+    background-size: 300%;
+    background-position: center;
 }
 
 
 #art {
-    top: 75%;
-    right: 1%;
-    z-index: 1;
-    width: 260px;
-    height: 200px;
-    font: monospace;
     background-image: url('apple2.png');
-    background-size: 100%;
+    background-size: 120%;
     background-position: center;
-    border: none;
-    color: rgb(253, 253, 253);
-    font-size: 19px;
-    font-weight: 100;
-    cursor: pointer;
-    transition: background-size 2.5s ease-in-out, box-shadow 1s ease, border-color 1s ease, height 1s ease, width 1s ease;
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
-    border: 2px solid #4e4e4e;
-    padding: 0 18px;
-    line-height: 50px;
-    text-align: center;
-    border-radius: 30px;
-    z-index: 3;
-
 }
-
-#art:hover {
-    background-size: 170%;
-    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);
-    border-color: #181818;
-    height: 210px;
-    width: 270px;
-}
-
-#art:active {
-    box-shadow: #422800 2px 2px 0 0;
-    transform: translate(5px, 5px);
-  }
 
 
 #certs {
-    top: 85%;
-    left: 20%;
-    width: 100px;
-    height: 100px;
     background-image: url('sec+.png');
-    background-size: 100%;
-    border: none;
-    cursor: pointer;
-    transition: width 0.3s ease, height 0.3s ease;
-    border-radius: 15px;
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
-    border: 2px solid #4e4e4e;
-    text-shadow: 
-        1px 1px 0 #000,
-        -1px -1px 0 #000,
-        1px -1px 0 #000,
-        -1px 1px 0 #000;
-}
-#certs:hover {
-    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);
-    border-color: #181818;
-    width: 110px;
-    height: 110px;
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 #dashboard {
-    top: 85%;
-    left: 2%;
-    width: 100px;
-    height: 100px;
     background-image: url('dashboard.png');
-    background-size: 100%;
-    background-color: #313131;
-    border: none;
-    cursor: pointer;
-    transition: width 0.3s ease, height 0.3s ease;
-    border-radius: 15px;
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
-    border: 2px solid #4e4e4e;
-    text-shadow: 
-        1px 1px 0 #000,
-        -1px -1px 0 #000,
-        1px -1px 0 #000,
-        -1px 1px 0 #000;
-}
-#dashboard-text {
-    font: courier;
-}
-#dashboard:hover {
-    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);
-    border-color: #181818;
-    width: 110px;
-    height: 110px;
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .smiley {
