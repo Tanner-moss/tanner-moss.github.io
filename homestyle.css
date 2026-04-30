@@ -136,18 +136,19 @@ a { color: inherit; }
 .page {
     position: relative;
     z-index: 2;
-    padding: 0 170px 80px 36px;
+    padding: 0 170px 40px 36px;
     max-width: 1180px;
     margin: 0 auto;
 }
 
 .hero {
-    min-height: 78vh;
+    min-height: 44vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 80px;
+    padding-top: 70px;
+    padding-bottom: 8px;
 }
 
 .hero-inner {
@@ -178,7 +179,7 @@ a { color: inherit; }
 .section {
     display: flex;
     align-items: center;
-    padding: 40px 0;
+    padding: 14px 0;
 }
 
 /* --- Glass cards ------------------------------------------ */
@@ -293,8 +294,8 @@ a { color: inherit; }
 }
 
 .foot {
-    margin-top: 40px;
-    padding: 24px 0 12px 0;
+    margin-top: 24px;
+    padding: 16px 0 10px 0;
     border-top: 1px solid rgba(244, 239, 228, 0.12);
     text-align: center;
     font-size: 11px;
@@ -327,17 +328,17 @@ a { color: inherit; }
     position: fixed;
     top: 78px;
     right: 14px;
-    bottom: 14px;
     z-index: 5;
     width: 124px;
-    padding: 14px 10px;
+    max-height: calc(100vh - 92px);
+    padding: 12px 10px;
     background:
         linear-gradient(180deg, rgba(20,28,22,0.82) 0%, rgba(14,24,19,0.92) 100%);
     border: 1px solid rgba(201,161,74,0.28);
     border-radius: 18px;
     backdrop-filter: blur(14px) saturate(140%);
     -webkit-backdrop-filter: blur(14px) saturate(140%);
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
@@ -361,12 +362,11 @@ a { color: inherit; }
 }
 
 .charity-list {
-    flex: 1;
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     padding: 2px 2px 2px 0;
+    overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: rgba(201,161,74,0.4) transparent;
 }
@@ -471,9 +471,9 @@ a { color: inherit; }
 .cat {
     position: fixed;
     left: 18px;
-    bottom: -36px;
-    width: 200px;
-    height: 200px;
+    bottom: -50px;
+    width: 300px;
+    height: 300px;
     z-index: 4;
     pointer-events: none;
 }
@@ -497,21 +497,21 @@ a { color: inherit; }
 
 .eye {
     position: absolute;
-    width: 32px;
-    height: 32px;
+    width: 48px;
+    height: 48px;
     background-size: cover;
     background-position: center;
     border-radius: 20%;
-    top: 86px;
+    top: 129px;
 }
 
 .eye.left {
-    left: 66px;
+    left: 99px;
     background-image: url('eye1.png');
 }
 
 .eye.right {
-    right: 56px;
+    right: 84px;
     background-image: url('eye2.png');
 }
 
@@ -548,103 +548,8 @@ a { color: inherit; }
 
 @media (max-width: 480px) {
     .display { font-size: clamp(48px, 14vw, 80px); }
-    .cat { width: 150px; height: 150px; left: 6px; bottom: -28px; }
-    .eye { width: 24px; height: 24px; top: 64px; }
-    .eye.left { left: 50px; }
-    .eye.right { right: 42px; }
-}
-
-
-/* --- Cat mischief: paw + fake cursor ---------------------- */
-
-body.cursor-stolen,
-body.cursor-stolen * { cursor: none !important; }
-
-.fake-cursor {
-    position: fixed;
-    left: 0; top: 0;
-    width: 20px; height: 22px;
-    transform: translate(-2px, -1px);
-    pointer-events: none;
-    z-index: 10000;
-    opacity: 0;
-    transition: opacity 120ms ease;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
-}
-.fake-cursor.visible { opacity: 1; }
-
-/* Paw is rendered as: an arm rectangle stretching from the cat to the
-   target point, with a paw pad at the end. Length and angle are set
-   via CSS custom properties from JS. */
-.cat-paw {
-    --paw-len: 0px;
-    --paw-rot: 0deg;
-    position: fixed;
-    left: 0; top: 0;
-    width: 0; height: 0;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0;
-    transform-origin: 0 0;
-    transition: opacity 140ms ease;
-}
-.cat-paw.visible { opacity: 1; }
-
-.cat-paw-arm {
-    position: absolute;
-    left: 0; top: -10px;
-    height: 20px;
-    width: var(--paw-len);
-    transform-origin: 0 50%;
-    transform: rotate(var(--paw-rot));
-    background: linear-gradient(180deg, #c59a6a 0%, #8a5a35 50%, #5a3a20 100%);
-    border-radius: 12px;
-    box-shadow:
-        inset 0 -3px 6px rgba(0,0,0,0.3),
-        inset 0 2px 3px rgba(255,255,255,0.18),
-        0 4px 10px rgba(0,0,0,0.45);
-    transition: width 220ms cubic-bezier(.6,-0.2,.2,1.4);
-}
-
-.cat-paw-pad {
-    position: absolute;
-    left: 0; top: 0;
-    transform-origin: 0 0;
-    transform: rotate(var(--paw-rot)) translate(calc(var(--paw-len) - 4px), -22px);
-    width: 44px; height: 44px;
-    transition: transform 220ms cubic-bezier(.6,-0.2,.2,1.4);
-}
-
-.cat-paw-pad .bean {
-    position: absolute;
-    background: #2a1a10;
-    border-radius: 50%;
-    box-shadow: inset 0 -2px 3px rgba(0,0,0,0.4), 0 1px 1px rgba(255,255,255,0.1);
-}
-.cat-paw-pad .bean.main { width: 22px; height: 18px; left: 11px; top: 20px; border-radius: 60% 60% 50% 50%; }
-.cat-paw-pad .bean.t1   { width: 9px;  height: 9px;  left: 4px;  top: 12px; }
-.cat-paw-pad .bean.t2   { width: 10px; height: 10px; left: 14px; top: 4px; }
-.cat-paw-pad .bean.t3   { width: 10px; height: 10px; left: 24px; top: 4px; }
-.cat-paw-pad .bean.t4   { width: 9px;  height: 9px;  left: 32px; top: 12px; }
-
-/* Quick swipe: brief shake/rotate on the arm */
-.cat-paw.swipe .cat-paw-arm {
-    animation: paw-swipe 240ms ease-out;
-}
-.cat-paw.swipe .cat-paw-pad {
-    animation: paw-swipe-pad 240ms ease-out;
-}
-@keyframes paw-swipe {
-    0%   { transform: rotate(calc(var(--paw-rot) - 18deg)); }
-    50%  { transform: rotate(calc(var(--paw-rot) + 8deg)); }
-    100% { transform: rotate(var(--paw-rot)); }
-}
-@keyframes paw-swipe-pad {
-    0%   { transform: rotate(calc(var(--paw-rot) - 18deg)) translate(calc(var(--paw-len) - 10px), -28px); }
-    50%  { transform: rotate(calc(var(--paw-rot) + 8deg))  translate(calc(var(--paw-len) + 4px), -16px); }
-    100% { transform: rotate(var(--paw-rot)) translate(calc(var(--paw-len) - 4px), -22px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .cat-paw, .fake-cursor { display: none !important; }
+    .cat { width: 220px; height: 220px; left: 6px; bottom: -38px; }
+    .eye { width: 35px; height: 35px; top: 94px; }
+    .eye.left { left: 73px; }
+    .eye.right { right: 62px; }
 }
