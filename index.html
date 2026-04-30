@@ -3,95 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Tanner Moss</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="homestyle.css">
 </head>
 <body>
-    <video class="video-background" autoplay muted loop>
+    <!-- Background layers (z-order: video < gradient < particles < content < cat) -->
+    <video class="video-background" autoplay muted loop playsinline>
         <source src="wildlife.mp4" type="video/mp4">
-        Your browser does not support the video tag.
     </video>
+    <div class="mobile-background"></div>
     <div class="gradient"></div>
+    <div class="vignette"></div>
+    <canvas id="particles"></canvas>
 
-    <!-- Tab Slider Section -->
-    <div class="tab-slider">
-        <div class="tab-slider-inner">
-            <button class="tab education-tab" onclick="scrollToTab(0)">About Me</button>
-            <button class="tab projects-tab" onclick="scrollToTab(1)">Projects</button>
-            <button class="tab contacts-tab" onclick="scrollToTab(2)">Contacts</button>
-            <div class="slider"></div>
+    <!-- Top nav -->
+    <nav class="topnav">
+        <a class="brand" href="#hero">Tanner Moss</a>
+        <div class="navlinks">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#certs">Certifications</a>
+            <a href="#contact">Contact</a>
         </div>
-    </div>
-    <div class="charity-header"> Nature Charities</div>
-    <div class="button-container">
-        <div class="button-scroll">
-            <a href="https://www.nature.org/en-us/">
-                <button class="scroll-button" style="background-image: url('tnc.jpeg');"></button>
+    </nav>
+
+    <!-- Charity rail (preserved links) -->
+    <aside class="charity-rail" aria-label="Nature charities">
+        <div class="charity-title">Nature Charities</div>
+        <div class="charity-list">
+            <a href="https://www.nature.org/en-us/" target="_blank" rel="noopener">
+                <button class="scroll-button" style="background-image: url('tnc.jpeg');" aria-label="The Nature Conservancy"></button>
             </a>
-            <a href="https://www.rainforest-alliance.org/">
-                <button class="scroll-button" style="background-image: url('rainforest.png');"></button>
+            <a href="https://www.rainforest-alliance.org/" target="_blank" rel="noopener">
+                <button class="scroll-button" style="background-image: url('rainforest.png');" aria-label="Rainforest Alliance"></button>
             </a>
-            <a href="https://oceanconservancy.org/">
-                <button class="scroll-button" style="background-image: url('ocean.png');"></button>
+            <a href="https://oceanconservancy.org/" target="_blank" rel="noopener">
+                <button class="scroll-button" style="background-image: url('ocean.png');" aria-label="Ocean Conservancy"></button>
             </a>
-            <a href="https://www.nei.org/take-action">
-                <button class="scroll-button" style="background-image: url('nei.png');"></button>
+            <a href="https://www.nei.org/take-action" target="_blank" rel="noopener">
+                <button class="scroll-button" style="background-image: url('nei.png');" aria-label="Nuclear Energy Institute"></button>
             </a>
-            <a href="https://www.nrdc.org/">
-                <button class="scroll-button" style="background-image: url('nrdc.png');"></button>
+            <a href="https://www.nrdc.org/" target="_blank" rel="noopener">
+                <button class="scroll-button" style="background-image: url('nrdc.png');" aria-label="NRDC"></button>
+            </a>
         </div>
-    </div>
+    </aside>
 
-    <div class="scroll-container">
-        <div class="scroll-content">
-            <div class="content active">
-
-                <h2>About Me</h2>
-                <p>stuff about me
-                </p>
+    <!-- Main content -->
+    <main class="page">
+        <section class="hero" id="hero">
+            <div class="hero-inner reveal">
+                <h1 class="display">Portfolio</h1>
             </div>
-            <div class="content">
+        </section>
+
+        <section class="section" id="about">
+            <div class="card reveal">
+                <h2>About</h2>
+                <p>IT and security professional based in Texas. CompTIA Security+ certified. I work across systems administration, automation, and application security, with a focus on practical tools that solve real problems.</p>
+                <p>Outside of work I build software for things I care about, including ranch operations, education, and small utilities. I write most of my personal code in Python and TypeScript.</p>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <div class="card reveal">
                 <h2>Projects</h2>
-                <p>python file hash verifier</p>
-                <p>python fork bomb obfuscated and stenographed as img.jpg</p>
-                <p>python hash cracker for brute forcing a list of hashed passwords</p>
-                <p>more information on cyber security page</p>
+                <ul class="plain-list">
+                    <li><strong>RanchWarden</strong> &nbsp;&middot;&nbsp; <a href="https://ranchwarden.com" target="_blank" rel="noopener">ranchwarden.com</a><br>Ranch and horse management platform. Multi tenant accounts, client portals, billing, and barn layouts.</li>
+                    <li><strong>Open Human Academy</strong> &nbsp;&middot;&nbsp; <a href="https://openhumanacademy.com" target="_blank" rel="noopener">openhumanacademy.com</a><br>Free educational platform covering knowledge domains across the humanities, sciences, and applied fields.</li>
+                    <li><strong>Kiosk Time Clock</strong><br>Self hosted employee time tracking kiosk for small teams.</li>
+                    <li><strong>File Hash Verifier</strong><br>Python utility for verifying file integrity against known hashes.</li>
+                    <li><strong>Hash Cracker</strong><br>Python tool for brute forcing a list of hashed passwords against a wordlist.</li>
+                    <li><strong>Steganographic Payload</strong><br>Python proof of concept hiding an obfuscated payload inside a JPEG.</li>
+                </ul>
             </div>
-            <div class="content">
+        </section>
+
+        <section class="section" id="certs">
+            <div class="card reveal">
+                <h2>Certifications</h2>
+                <a class="cert-link" href="certs.html">
+                    <span class="cert-badge" style="background-image: url('sec+.png');" aria-hidden="true"></span>
+                    <span>CompTIA Security+</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="card reveal">
                 <h2>Contact</h2>
-                <p>moss.tanner1994@gmail.com</p>
+                <p><a href="mailto:moss.tanner1994@gmail.com">moss.tanner1994@gmail.com</a></p>
             </div>
+        </section>
+
+        <footer class="foot">
+            <p>&copy; <span id="year"></span> Tanner Moss</p>
+        </footer>
+    </main>
+
+    <!-- Cat (eyes follow cursor) -->
+    <div class="cat">
+        <div class="eyes">
+            <div class="eye left"></div>
+            <div class="eye right"></div>
         </div>
+        <div class="smiley"></div>
     </div>
-    
-
-    <div>
-        <a href="cyberportfolio.html">
-            <button class="cyber">cybersecurity portfolio</button>
-        </a>
-        <a href="ageofwar.html">
-            <button id="game">Age of War 3</button>
-        </a>
-        <a href="artpage.html">
-            <button id="art">Art Portfolio</button>
-        </a>
-        <a href="certs.html">
-            <button id="certs"></button>
-        </a>
-        <a href="dashboard.html">
-            <button id="dashboard"></button>
-        </a>
-    </div>
-
-    <div class="paw1"></div>
-    <div class="paw2"></div>
-    <div class="eyes">
-        <div class="eye left"></div>
-        <div class="eye right"></div>
-    </div>
-    <div class="smiley"></div>
 
     <script src="homescript.js"></script>
-    <script src="tabscript.js"></script>
 </body>
 </html>
